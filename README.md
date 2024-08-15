@@ -1,4 +1,4 @@
-# TP-CTF_Writeup
+![image](https://github.com/user-attachments/assets/1aa27a67-5604-4bfd-96e7-822b853e8db9)# TP-CTF_Writeup
 
 - Trong khi vào stalk github của một người anh thì mình phát hiện được một chall khá hay về file upload của PHP.
 - Sau vài ngày suffer với nó thì cuối cùng mình cũng đã solve được nó.
@@ -116,10 +116,16 @@ class Log
 - Tới đây thì mình nghĩ tới một hướng, đó là kết hợp cả File Upload và Deserialize
 - Tiếp tục Research thì mình tìm được một vài bài viết khá hay về Phar và Polyglot file.
 - Tóm tắt thì polyglot file là một file rằng nó sẽ hợp lệ với nhiều kiểu file khác nhau. Ví dụ GIFAR file này vừa là một file gif và vừa là file rar, còn nhiều trường hợp khác chẳng hạn như GIF và JS, …
+
 - Từ những khái niệm trên, mình đưa ra một kết luận về cách để solve chall này
    + Tìm một file Polyglot có extention thuộc vào whitelist của server ( ở đây là png, jpeg, jpg, và gif ).
    + Tìm cách để nhét code PHP của mình vào cái file đó.
    + Làm cho server chạy code PHP mà mình nhét vào trong file ảnh vừa upload.
    + Solve
-- 
+- Trong những extention được cho phép, mình tìm được một bài viết về việc tạo ra polyglot từ jpeg và Phar. Vừa đúng ý của mình
+![image](https://github.com/user-attachments/assets/ca6730df-8fbe-4646-ae38-8adce2688997)
+- File jpeg có phần SOI có giá trị là FF D8 và EOI là FF D9.
+- Về phần Phar thì nó là PHP ARchive. Một file phar được coi là hợp lệ , Nó cần đảm bảo một cấu trúc như sau. Gồm stub section, manifest section, và content section, signature.
+    + Phần đáng nói nhất của Phar đó là Manifest section dùng để chứa chứa các metadata, các metadata này được lưu trữ dưới dạng serialize. Khi ta sử dụng wrapper ```phar://``` thì những metadata này sẽ tự động deserialize.
+- Tiếp theo mình sẽ dùng [Tool](https://link-url-here.org)
 
