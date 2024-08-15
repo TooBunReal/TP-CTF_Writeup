@@ -107,5 +107,11 @@ class Log
 }
 ```
 
-- LƯỜI QUÁ TỐI VỀ VIẾT TIẾP
+- Nhìn qua thì Class này chứa một magic method khá sus là ```__destruct()``` tại đây nó có thể thực hiện ghi data vào một file.
+- Tới đây thì mội thứ bắt đầu quay trở lại một vòng lặp.
+- Nếu Upload một đoạn PHP để chỉnh sửa cái class hoặc sử dụng nó thì ta có thể ghi thêm một file mới, từ đó có thể RCE. TUY NHIÊN nếu đã upload được một đoạn PHP thì tội gì chúng ta không up thẳng một con shell cơ mà. Tội gì phải ghi thêm file mới. Vậy thì cái Class đó để làm gì.
+
+![image](https://github.com/user-attachments/assets/e6e63175-fd57-418e-9255-c9c6a0c458a2)
+
+- Tới đây thì mình nghĩ tới một hướng, đó là kết hợp cả File Upload và Deserialize 
 
