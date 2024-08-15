@@ -111,7 +111,15 @@ class Log
 - Tới đây thì mội thứ bắt đầu quay trở lại một vòng lặp.
 - Nếu Upload một đoạn PHP để chỉnh sửa cái class hoặc sử dụng nó thì ta có thể ghi thêm một file mới, từ đó có thể RCE. TUY NHIÊN nếu đã upload được một đoạn PHP thì tội gì chúng ta không up thẳng một con shell cơ mà. Tội gì phải ghi thêm file mới. Vậy thì cái Class đó để làm gì.
 
-![image](https://github.com/user-attachments/assets/e6e63175-fd57-418e-9255-c9c6a0c458a2)
+     ![image](https://github.com/user-attachments/assets/e6e63175-fd57-418e-9255-c9c6a0c458a2)
 
-- Tới đây thì mình nghĩ tới một hướng, đó là kết hợp cả File Upload và Deserialize 
+- Tới đây thì mình nghĩ tới một hướng, đó là kết hợp cả File Upload và Deserialize
+- Tiếp tục Research thì mình tìm được một vài bài viết khá hay về Phar và Polyglot file.
+- Tóm tắt thì polyglot file là một file rằng nó sẽ hợp lệ với nhiều kiểu file khác nhau. Ví dụ GIFAR file này vừa là một file gif và vừa là file rar, còn nhiều trường hợp khác chẳng hạn như GIF và JS, …
+- Từ những khái niệm trên, mình đưa ra một kết luận về cách để solve chall này
+   + Tìm một file Polyglot có extention thuộc vào whitelist của server ( ở đây là png, jpeg, jpg, và gif ).
+   + Tìm cách để nhét code PHP của mình vào cái file đó.
+   + Làm cho server chạy code PHP mà mình nhét vào trong file ảnh vừa upload.
+   + Solve
+- 
 
