@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/1aa27a67-5604-4bfd-96e7-822b853e8db9)# TP-CTF_Writeup
+# TP-CTF_Writeup
 
 - Trong khi vào stalk github của một người anh thì mình phát hiện được một chall khá hay về file upload của PHP.
 - Sau vài ngày suffer với nó thì cuối cùng mình cũng đã solve được nó.
@@ -127,5 +127,6 @@ class Log
 - File jpeg có phần SOI có giá trị là FF D8 và EOI là FF D9.
 - Về phần Phar thì nó là PHP ARchive. Một file phar được coi là hợp lệ , Nó cần đảm bảo một cấu trúc như sau. Gồm stub section, manifest section, và content section, signature.
     + Phần đáng nói nhất của Phar đó là Manifest section dùng để chứa chứa các metadata, các metadata này được lưu trữ dưới dạng serialize. Khi ta sử dụng wrapper ```phar://``` thì những metadata này sẽ tự động deserialize.
-- Tiếp theo mình sẽ dùng [Tool](https://link-url-here.org)
+
+- Tiếp theo mình sẽ dùng [Tool](https://link-url-here.org) để generate một file polyglot. Nó là một file ảnh, nhưng nó cũng là một file phar.
 
