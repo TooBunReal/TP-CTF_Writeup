@@ -122,11 +122,37 @@ class Log
    + Tìm cách để nhét code PHP của mình vào cái file đó.
    + Làm cho server chạy code PHP mà mình nhét vào trong file ảnh vừa upload.
    + Solve
-- Trong những extention được cho phép, mình tìm được một bài viết về việc tạo ra polyglot từ jpeg và Phar. Vừa đúng ý của mình
+- Trong những extention được cho phép, mình tìm được một bài viết về việc tạo ra polyglot từ jpeg và Phar. Khá may mắn là trong src có sử dụng ```file_exists``` hàm này có hỗ trợ wrapper ```phar://``` . Vừa đúng ý mình.
 ![image](https://github.com/user-attachments/assets/ca6730df-8fbe-4646-ae38-8adce2688997)
 - File jpeg có phần SOI có giá trị là FF D8 và EOI là FF D9.
 - Về phần Phar thì nó là PHP ARchive. Một file phar được coi là hợp lệ , Nó cần đảm bảo một cấu trúc như sau. Gồm stub section, manifest section, và content section, signature.
     + Phần đáng nói nhất của Phar đó là Manifest section dùng để chứa chứa các metadata, các metadata này được lưu trữ dưới dạng serialize. Khi ta sử dụng wrapper ```phar://``` thì những metadata này sẽ tự động deserialize.
 
 - Tiếp theo mình sẽ dùng [Tool](https://link-url-here.org) để generate một file polyglot. Nó là một file ảnh, nhưng nó cũng là một file phar.
+- Ý tưởng bây giờ sẽ là:
+  + Tạo một file polyglot, với PHAR và JPG.
+  + Trong file phar mình định nghĩa lại class Log giống như trên src và khởi tạo nó để tạo ra một file shell giúp mình có thể RCE.
+  + Upload file dưới định dạng jpg và để server deserialize nó.
+
+![image](https://github.com/user-attachments/assets/8a289101-a8c3-42ac-96fb-96e5fec31e5c)
+
+- Đây sẽ là payload của mình.
+- Oke bước chuẩn bị đã xong, bây giờ thì gửi nó lên server và lụm flag thôi.
+
+![image](https://github.com/user-attachments/assets/35ea194b-59ac-4bae-ba1f-48a3ea13be8b)
+
+- Upload xong, giờ chỉ cần trigger server để deserialize ra Shell mà mình mong muốn thôi.
+
+![image](https://github.com/user-attachments/assets/efef0ea3-06ca-4b04-ab94-c0625ba0c487)
+
+- Giờ là bước mà mình đã chờ đợi rất lâu, RCE và lấy lại danh dự của PHP_k1n9 =)))))
+
+![image](https://github.com/user-attachments/assets/6c8cf30a-b62f-4c49-b21c-ba4c14b344f1)
+
+Flag: ```TP-CTF{pHp_k1n9_b4ck}```
+
+# Đôi lời muốn lói
+Mình muốn gửi lời cảm ơn SÂU SẮC nhất tới anh ```TP``` là author của chall này mong anh ra thêm chall cho em solve ạ, và anh ```Buôn lựu đạn``` đã giúp đỡ em solve =))
+
+![anh-meo-de-thuong-tang-2-bong-hoa-hong-meme](https://github.com/user-attachments/assets/209c793b-2b2d-41a1-b664-6d522ad978bb)
 
