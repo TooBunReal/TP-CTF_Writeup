@@ -128,7 +128,7 @@ class Log
 - Về phần Phar thì nó là PHP ARchive. Một file phar được coi là hợp lệ , Nó cần đảm bảo một cấu trúc như sau. Gồm stub section, manifest section, và content section, signature.
     + Phần đáng nói nhất của Phar đó là Manifest section dùng để chứa chứa các metadata, các metadata này được lưu trữ dưới dạng serialize. Khi ta sử dụng wrapper ```phar://``` thì những metadata này sẽ tự động deserialize.
 
-- Tiếp theo mình sẽ dùng [Tool]([https://link-url-here.org](https://github.com/kunte0/phar-jpg-polyglot)) để generate một file polyglot. Nó là một file ảnh, nhưng nó cũng là một file phar.
+- Tiếp theo mình sẽ dùng [Tool](https://github.com/kunte0/phar-jpg-polyglot)] để generate một file polyglot. Nó là một file ảnh, nhưng nó cũng là một file phar.
 - Ý tưởng bây giờ sẽ là:
   + Tạo một file polyglot, với PHAR và JPG.
   + Trong file phar mình định nghĩa lại class Log giống như trên src và khởi tạo nó để tạo ra một file shell giúp mình có thể RCE.
